@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<ul>
+    <li>Total Lots: {{ total_lots }}</li>
+    <li>Total Spots: {{ total_spots }}</li>
+    <li>Occupied Spots: {{ occupied_spots }}</li>
+    <li>Available Spots: {{ available_spots }}</li>
+    <li>Active Reservations: {{ active_reservations }}</li>
+    <li>Registered Users: {{ total_users }}</li>
+</ul>
+
+<h3>Recent Active Reservations</h3>
+<table border="1">
+    <tr>
+        <th>Username</th>
+        <th>Lot</th>
+        <th>Spot</th>
+        <th>Vehicle No</th>
+        <th>Time</th>
+    </tr>
+    {% for res in recent_reservations %}
+    <tr>
+        <td>{{ res.user.username }}</td>
+        <td>{{ res.parking_spot.parking_lot.prime_location_name }}</td>
+        <td>{{ res.parking_spot.spot_number }}</td>
+        <td>{{ res.vehicle_number }}</td>
+        <td>{{ res.parking_timestamp }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
